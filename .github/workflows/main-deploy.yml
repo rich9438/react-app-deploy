@@ -32,13 +32,13 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd /var/www/appx.everythingcanbe.com/html
+          cd /var/www/react-app-deploy.everythingcanbe.com/html
           rm -rf *
           # Files will be uploaded via rsync
     
     - name: Upload files
       run: |
-        rsync -avz --delete ./build/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/appx.everythingcanbe.com/html/
+        rsync -avz --delete ./build/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/react-app-deploy.everythingcanbe.com/html/
     
     - name: Restart Nginx
       uses: appleboy/ssh-action@v0.1.5
