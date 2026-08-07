@@ -41,7 +41,7 @@ jobs:
         rsync -avz --delete ./build/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/react-app-deploy.everythingcanbe.com/html/
     
     - name: Restart Nginx
-      uses: appleboy/ssh-action@v0.1.5
+      uses: appleboy/ssh-action@v1.2.2
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
