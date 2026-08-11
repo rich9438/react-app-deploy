@@ -85,8 +85,8 @@ export default function TransactionForm({
           </button>
         </div>
       </div>
-
-      <table>
+      <div className="table-scroll">
+              <table>
         <thead>
           <tr>
             <th>{t("thFrom")}</th>
@@ -126,6 +126,7 @@ export default function TransactionForm({
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
