@@ -24,19 +24,6 @@ jobs:
       run: npm run build
       env:
         REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-
-    - name: Debug for secrect
-      run: |
-        echo ${{ secrets.REACT_APP_API_URL }}
-        
-    - name: Check SSH key exists
-      run: |
-        if [ -z "${{ secrets.SSH_KEY }}" ]; then
-          echo "SSH_KEY is empty"
-          exit 1
-        else
-          echo "SSH_KEY is present"
-        fi
         
     - name: Set up SSH agent
       uses: webfactory/ssh-agent@v0.9.0
