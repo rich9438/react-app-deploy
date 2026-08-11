@@ -33,8 +33,8 @@ export default function TransactionForm({
 
   return (
     <div className="card">
-      <div className="card-title">{t("txSection")}</div>
-      <div className="action-bar">
+      <div className="card-title">
+        <span>{t("txSection")}</span>
         <button className="btn btn-danger" onClick={onClearAll}>
           {t("clearAllTx")}
         </button>

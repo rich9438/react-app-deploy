@@ -214,6 +214,7 @@ export default function ExpenseForm({
                 <input
                   type="number"
                   min={0}
+                  placeholder="" /* TODO: Show pre-calculate value */
                   value={manualMap[m] ?? ""}
                   onChange={(e) =>
                     setManualMap((prev) => ({ ...prev, [m]: e.target.value }))

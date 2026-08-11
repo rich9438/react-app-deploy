@@ -86,7 +86,7 @@ export default function SettlementView() {
       <div className="top-bar">
         <button
           className="btn btn-outline"
-          style={{ fontSize: "0.85rem" }}
+          style={{ fontSize: "0.8rem" }}
           onClick={resetDefaultExample}
         >
           {t("resetBtn")}
