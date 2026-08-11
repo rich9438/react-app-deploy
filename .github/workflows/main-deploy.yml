@@ -37,18 +37,16 @@ jobs:
         else
           echo "SSH_KEY is present"
         fi
-    
-    - name: Deploy to server
-      uses: appleboy/ssh-action@v1.2.2
+        
+    - name: Set up SSH agent
+      uses: webfactory/ssh-agent@v0.9.0
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        script: |
-          cd /var/www/react-app-deploy.everythingcanbe.com/html
-          rm -rf *
-          # Files will be uploaded via rsync
+        ssh-private-key: ${{ secrets.SSH_KEY }}
     
+    - name: Upload files
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" --delete ./build/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/react-app-deploy.everythingcanbe.com/html/
+
     - name: Restart Nginx
       uses: appleboy/ssh-action@v1.2.2
       with:
