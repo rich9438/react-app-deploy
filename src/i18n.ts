@@ -86,7 +86,9 @@ export interface LangPack {
   thNote: string;
   thCalcMethod: string;
   thRealCost: string;
+  thMemberCost: string;
   thRealTotal: string;
+  thMemberTotal: string;
   emptyExpense: string;
   purposes: string[];
   defaultMembers: string[];
@@ -195,7 +197,9 @@ export const i18n: Record<Lang, LangPack> = {
     thNote: "Note",
     thCalcMethod: "Calc. Method",
     thRealCost: "Real Cost",
+    thMemberCost: "All Member Expense",
     thRealTotal: "Real Total",
+    thMemberTotal: "Member Total",
     emptyExpense: "No expenses yet. Add one on the left.",
     purposes: [
       "Dining",
@@ -305,7 +309,9 @@ export const i18n: Record<Lang, LangPack> = {
     thNote: "備註",
     thCalcMethod: "計算方式",
     thRealCost: "真實花費",
+    thMemberCost: "成員總花費",
     thRealTotal: "真實總花費",
+    thMemberTotal: "成員花費總額",
     emptyExpense: "尚無支出紀錄，請於左側新增。",
     purposes: ["餐飲", "交通", "娛樂", "日常用品", "醫療", "旅遊", "其他"],
     defaultMembers: ["Rich", "Judy", "Bruce", "Family"],
