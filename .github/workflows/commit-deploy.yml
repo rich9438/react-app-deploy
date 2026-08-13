@@ -40,7 +40,7 @@ jobs:
 
     - name: Upload files via rsync
       run: |
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --delete ./dist/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/html/
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --delete ./dist/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/${{ vars.SUBDOMAIN_URL }}/html/
 
     - name: Restart Nginx
       uses: appleboy/ssh-action@v1.2.2
