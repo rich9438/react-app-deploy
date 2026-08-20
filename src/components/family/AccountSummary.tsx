@@ -47,41 +47,34 @@ export default function AccountSummary({
     return { realTotal, memberTotal };
   }, [expenses, familyMembers, expenseAccounts]);
 
-  const colspan = 3 + familyMembers.length;
-
-  const accMembersTotal = (a: string) =>
-    familyMembers.reduce((sum, m) => sum + (agg.memberTotal[a][m] || 0), 0);
+  const colspan = 2 + familyMembers.length;
 
   // Rows to display (accounts with any activity), plus grand totals.
   const visibleAccounts = expenseAccounts.filter(
     (a) => !(agg.realTotal[a] === 0 && !hasAnyShare(agg.memberTotal[a])),
   );
   let grandReal = 0;
-  let grandMembersTotal = 0;
   const grandMember: Record<string, number> = {};
   familyMembers.forEach((m) => (grandMember[m] = 0));
   visibleAccounts.forEach((a) => {
     grandReal += agg.realTotal[a];
     familyMembers.forEach((m) => (grandMember[m] += agg.memberTotal[a][m] || 0));
-    grandMembersTotal += accMembersTotal(a);
   });
 
   function exportCsv() {
-    const header = [t("thAccName"), t("thRealTotal"), ...familyMembers, t("thMemberTotal")];
+    const header = [t("thAccName"), t("thRealTotal"), ...familyMembers];
     const rows: (string | number)[][] = [header];
     visibleAccounts.forEach((a) => {
       rows.push([
         a,
         agg.realTotal[a],
         ...familyMembers.map((m) => agg.memberTotal[a][m] || 0),
-        accMembersTotal(a),
       ]);
     });
     rows.push([
       t("totalRow"),
       grandReal,
       ...familyMembers.map((m) => grandMember[m]),
-      grandMembersTotal,
     ]);
     downloadCsv("account_summary.csv", rows);
   }
@@ -107,7 +100,6 @@ export default function AccountSummary({
               {familyMembers.map((m) => (
                 <th key={m}>{m}</th>
               ))}
-              <th>{t("thMemberTotal")}</th>
             </tr>
           </thead>
           <tbody>
@@ -140,9 +132,6 @@ export default function AccountSummary({
                         </td>
                       );
                     })}
-                    <td className="amount" style={{ fontWeight: "bold" }}>
-                      ${accMembersTotal(a).toLocaleString()}
-                    </td>
                   </tr>
                 ))}
                 <tr style={{ background: "#f8fafc", fontWeight: "bold" }}>
@@ -153,9 +142,6 @@ export default function AccountSummary({
                       ${grandMember[m].toLocaleString()}
                     </td>
                   ))}
-                  <td className="amount">
-                    ${grandMembersTotal.toLocaleString()}
-                  </td>
                 </tr>
               </>
             )}

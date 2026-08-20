@@ -7,9 +7,8 @@ export default function NetBalanceTable({ rows }: { rows: NetRow[] }) {
   return (
     <div className="card">
       <div className="card-title">{t("netSection")}</div>
-      <div className="table-scroll">
-        <table>
-          <thead>
+      <table>
+        <thead>
           <tr>
             <th>{t("thAccName")}</th>
             <th>{t("thIn")}</th>
@@ -17,8 +16,8 @@ export default function NetBalanceTable({ rows }: { rows: NetRow[] }) {
             <th>{t("thNet")}</th>
             <th>{t("thStatus")}</th>
           </tr>
-          </thead>
-          <tbody>
+        </thead>
+        <tbody>
           {rows.map(({ acc, totalIn, totalOut, net }) => {
             let netClass = "amount-zero";
             let status = (
@@ -53,9 +52,8 @@ export default function NetBalanceTable({ rows }: { rows: NetRow[] }) {
               </tr>
             );
           })}
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 }

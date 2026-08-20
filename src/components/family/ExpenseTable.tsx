@@ -18,10 +18,7 @@ export default function ExpenseTable({
 
   const purposeText = (idx: number) => pack.purposes[idx] ?? "";
   const sorted = [...expenses].sort((a, b) => a.account.localeCompare(b.account));
-  const colspan = 7 + familyMembers.length;
-
-  const membersTotal = (e: Expense) =>
-    Object.values(e.shares).reduce((sum, v) => sum + v, 0);
+  const colspan = 6 + familyMembers.length;
 
   function exportCsv() {
     const header = [
@@ -31,7 +28,6 @@ export default function ExpenseTable({
       t("thCalcMethod"),
       t("thRealCost"),
       ...familyMembers,
-      t("thMemberCost"),
     ];
     const rows: (string | number)[][] = [header];
     sorted.forEach((e) => {
@@ -44,7 +40,6 @@ export default function ExpenseTable({
         ...familyMembers.map((m) =>
           e.shares[m] !== undefined ? e.shares[m] : "",
         ),
-        membersTotal(e),
       ]);
     });
     downloadCsv("expense_details.csv", rows);
@@ -74,7 +69,6 @@ export default function ExpenseTable({
               {familyMembers.map((m) => (
                 <th key={m}>{m}</th>
               ))}
-              <th>{t("thMemberCost")}</th>
               <th>{t("thAction")}</th>
             </tr>
           </thead>
@@ -125,9 +119,6 @@ export default function ExpenseTable({
                       </td>
                     ),
                   )}
-                  <td className="amount" style={{ fontWeight: "bold" }}>
-                    ${membersTotal(e).toLocaleString()}
-                  </td>
                   <td>
                     <button
                       className="btn btn-danger"

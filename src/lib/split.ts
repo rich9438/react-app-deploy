@@ -37,12 +37,9 @@ export function computeShares(
     return { shares, ok: true };
   }
 
-  if (roundMode === "zero") {
-    members.forEach((m) => (shares[m] = members.length ? Math.round((amount / members.length) * 100 / 100) : 0));
-  } else {
-    const unit = roundMode === "hundred" ? 100 : 10;
-    members.forEach((m) => (shares[m] = members.length ? roundUp(amount / members.length, unit) : 0));
-  }
+  const unit = roundMode === "hundred" ? 100 : 10;
+  const per = members.length ? roundUp(amount / members.length, unit) : 0;
+  members.forEach((m) => (shares[m] = per));
   return { shares, ok: true };
 }
 
@@ -52,7 +49,7 @@ export function calcMethodLabel(
   pack: LangPack,
 ): string {
   const r =
-    roundMode === "hundred" ? pack.roundHundredShort : roundMode === "ten" ? pack.roundTenShort : pack.roundZeroShort;
+    roundMode === "hundred" ? pack.roundHundredShort : pack.roundTenShort;
   const s = splitMode === "average" ? pack.splitAverage : pack.splitManual;
   return `${r} | ${s}`;
 }
