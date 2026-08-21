@@ -157,7 +157,7 @@ export const i18n: Record<Lang, LangPack> = {
       "Account '{0}' is in use. Deleting it will remove related transactions. Continue?",
     alertSame: "From and To accounts cannot be the same",
     alertAmt: "Please enter a valid amount",
-    defaultAccs: ["現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡"],
+    defaultAccs: ["Rich", "Judy", "Bruce", "現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡", "第一宜蘭卡", "中國信託lala卡", "富綁J卡"],
     /* ---- Family view ---- */
     famTitle: "Family Expense & Split Tracker",
     famSubtitle:
@@ -214,7 +214,7 @@ export const i18n: Record<Lang, LangPack> = {
       "Other"
     ],
     defaultMembers: ["Rich", "Judy", "Bruce", "Family"],
-    defaultExpAccounts: ["Rich", "Judy", "Bruce", "現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡", "第一宜蘭卡", "中國信託lala卡", "富綁J卡",],
+    defaultExpAccounts: ["Rich", "Judy", "Bruce", "現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡", "第一宜蘭卡", "中國信託lala卡", "富綁J卡"],
     alertMemberName: "Please enter a member name",
     alertMemberExist: "Member already exists",
     alertMinMember: "Keep at least 1 member",
@@ -272,7 +272,7 @@ export const i18n: Record<Lang, LangPack> = {
       "帳戶「{0}」目前有參與交易，刪除該帳戶同時會清除相關交易，確定刪除？",
     alertSame: "轉出與轉入帳戶不能相同",
     alertAmt: "請輸入有效的轉帳金額",
-    defaultAccs: ["現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡"],
+    defaultAccs: ["Rich", "Judy", "Bruce", "現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡", "第一宜蘭卡", "中國信託lala卡", "富綁J卡"],
     /* ---- Family view ---- */
     famTitle: "家庭記帳與花費統計",
     famSubtitle:
@@ -318,7 +318,7 @@ export const i18n: Record<Lang, LangPack> = {
     emptyExpense: "尚無支出紀錄，請於左側新增。",
     purposes: ["餐飲", "交通", "娛樂", "日常用品", "醫療", "旅遊", "買菜", "加油", "育兒", "其他"],
     defaultMembers: ["Rich", "Judy", "Bruce", "Family"],
-    defaultExpAccounts: ["Rich", "Judy", "Bruce", "現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡", "第一宜蘭卡", "中國信託lala卡", "富綁J卡",],
+    defaultExpAccounts: ["Rich", "Judy", "Bruce", "現金", "台新狗卡", "第一熊卡", "遠東樂卡", "富邦好事多卡", "第一宜蘭卡", "中國信託lala卡", "富綁J卡"],
     alertMemberName: "請輸入成員名稱",
     alertMemberExist: "該成員已存在",
     alertMinMember: "最少需保留一位成員",
