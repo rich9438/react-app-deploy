@@ -33,8 +33,8 @@ export default function TransactionForm({
 
   return (
     <div className="card">
-      <div className="card-title">{t("txSection")}</div>
-      <div className="action-bar">
+      <div className="card-title">
+        <span>{t("txSection")}</span>
         <button className="btn btn-danger" onClick={onClearAll}>
           {t("clearAllTx")}
         </button>
@@ -85,8 +85,8 @@ export default function TransactionForm({
           </button>
         </div>
       </div>
-
-      <table>
+      <div className="table-scroll">
+              <table>
         <thead>
           <tr>
             <th>{t("thFrom")}</th>
@@ -126,6 +126,7 @@ export default function TransactionForm({
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

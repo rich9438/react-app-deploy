@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useLang } from "../../context/LangContext";
 import type { Expense, RoundMode, SplitMode } from "../../types";
-import { computeShares } from "../../lib/split";
+import { computeShares, roundUp } from "../../lib/split";
 
 interface Props {
   familyMembers: string[];
@@ -57,6 +57,18 @@ export default function ExpenseForm({
     return { shares, total };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount, members.join(","), roundMode, splitMode, JSON.stringify(manualMap)]);
+
+  // Hint for the manual inputs: what each member would pay in "average" mode.
+  const avgPlaceholder = useMemo(() => {
+    const amt = parseFloat(amount);
+    if (!members.length || isNaN(amt) || amt < 0) return "";
+    if (roundMode === "zero")
+      return String(Math.round(amt / members.length));
+
+    const unit = roundMode === "hundred" ? 100 : 10;
+    return String(roundUp(amt / members.length, unit));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amount, members.join(","), roundMode]);
 
   function handleAdd() {
     if (!members.length) return alert(t("alertNoMemberSel"));
@@ -211,14 +223,16 @@ export default function ExpenseForm({
             {members.map((m) => (
               <div className="m-item" key={m}>
                 <span>{m}</span>
-                <input
-                  type="number"
-                  min={0}
-                  value={manualMap[m] ?? ""}
-                  onChange={(e) =>
-                    setManualMap((prev) => ({ ...prev, [m]: e.target.value }))
-                  }
-                />
+                    <input
+                        type="number"
+                        min={0}
+                        placeholder={avgPlaceholder}
+                        value={manualMap[m] ?? ""}
+                        onChange={(e) =>
+                          setManualMap((prev) => ({ ...prev, [m]: e.target.value }))
+                        }
+                  />
+
               </div>
             ))}
           </div>
